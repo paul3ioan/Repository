@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository
+namespace Repository.Interface.Employeeview
 {
-    public class Config:IConfig
+    public interface IEmployeeView
     {
-       
+        public void Start();
+
     }
 }

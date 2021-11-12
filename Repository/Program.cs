@@ -1,31 +1,25 @@
 ﻿using System;
 using System.IO;
+using Repository.Interface;
 namespace Repository
 {
     class Program
     {
-        private static readonly IAlbumRepo _repo = new AlbumRepo();
+       // private static readonly IAlbumRepo _repo = new AlbumRepo();
         static void Main(string[] args)
         {
             
             string path = "../../../albums.csv";
-            if(File.Exists(path))
-            {
-                using (StreamReader sr = File.OpenText(path))
-                {
-                    string s;
-                    s = sr.ReadLine();
-                    while((s = sr.ReadLine()) !=null)
-                    {
-                        addElement(s);
-                    }
-                }
-            }
-            MakeSomeChanges();
+            IAlbumRepo _repo = new AlbumRepo(path);
+            MainView _view = new(_repo);
+            _view.Start();
             _repo.Save();
+           // MakeSomeChanges();
+            
         }
-        static void MakeSomeChanges()
+       /* static void MakeSomeChanges()
         {
+            var x = _repo.GetById(20);
             Album astro = _repo.GetByAlbum("Astroworld");
             astro.Year = 2017;
             astro.Valid = false;
@@ -35,6 +29,7 @@ namespace Repository
             {
                 _repo.Delete(album.Id);
             }
+            _repo.Save();
         }
         static void addElement(string s)
         {
@@ -50,6 +45,6 @@ namespace Repository
                 newAlbum.Valid = false;
             newAlbum.Year =Convert.ToInt32(list[3]);
             _repo.Insert(newAlbum);
-        }
+        }*/
     }
 }
