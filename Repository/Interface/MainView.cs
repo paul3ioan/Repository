@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Repository.Interface.Clientview;
 using Repository.Interface.Employeeview;
 namespace Repository.Interface
@@ -10,7 +6,6 @@ namespace Repository.Interface
     public class MainView
     {
         private readonly IAlbumRepo _repo;
-        
         private readonly IEmployeeView _employeeView;
         private readonly IClientView _clientView;
         private const string EmployeePassword = "paul";
@@ -28,7 +23,8 @@ namespace Repository.Interface
         public void Start()
         {
             Console.WriteLine("Data have been stored");
-            while (true)
+            bool isLoop = true;
+            while (isLoop)
             {
                 ShowMain();
                 var input = Console.ReadKey();
@@ -55,10 +51,8 @@ namespace Repository.Interface
                     default:
                         Console.WriteLine("Input is invalid please try again!");
                         continue;
-                        break;
                 }
             }
-
         }
         private bool CheckPassword(string password)
         {
@@ -67,7 +61,7 @@ namespace Repository.Interface
         private void CloseProgram()
         {
             _repo.Save();
-            Console.WriteLine("Thanks for using our services!");
+            Console.WriteLine("Thank you for using our services!");
             Environment.Exit(0);
         }
     }

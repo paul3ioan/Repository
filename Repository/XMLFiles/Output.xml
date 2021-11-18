@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAlbum xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Album>
+    <Id>0</Id>
+    <Name>Astroworld</Name>
+    <ArtistName>Travis Scott</ArtistName>
+    <Genre>Trap</Genre>
+    <Valid>true</Valid>
+    <Sales>2362210</Sales>
+    <Year>2015</Year>
+    <RecordLabel>whoKnows</RecordLabel>
+  </Album>
+  <Album>
+    <Id>1</Id>
+    <Name>Vulgar Display of Power</Name>
+    <ArtistName>Pantera</ArtistName>
+    <Genre>Rock</Genre>
+    <Valid>false</Valid>
+    <Sales>2375522</Sales>
+    <Year>1992</Year>
+    <RecordLabel>whoKnows</RecordLabel>
+  </Album>
+  <Album>
+    <Id>2</Id>
+    <Name>Ashes of the Wake</Name>
+    <ArtistName>Lamb of God</ArtistName>
+    <Genre>Rock</Genre>
+    <Valid>true</Valid>
+    <Sales>3463272</Sales>
+    <Year>2004</Year>
+    <RecordLabel>whoKnows</RecordLabel>
+  </Album>
+  <Album>
+    <Id>3</Id>
+    <Name>My Beautiful Dark Twisted Fantasy</Name>
+    <ArtistName>Kanye West</ArtistName>
+    <Genre>rap</Genre>
+    <Valid>true</Valid>
+    <Sales>1242632</Sales>
+    <Year>2010</Year>
+    <RecordLabel>whoKnows</RecordLabel>
+  </Album>
+</ArrayOfAlbum>

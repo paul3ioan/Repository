@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.Interface.Clientview
 {
     public class ClientView:IClientView
-    {
-        
+    {       
         private readonly IClientServices _clientServices;
         private readonly IAlbumRepo _repo;
         public ClientView(IAlbumRepo repo)
@@ -26,12 +21,17 @@ namespace Repository.Interface.Clientview
                 var input = Console.ReadKey();
                 switch (input.KeyChar)
                 {
-                    case '1': _clientServices.ShowAllItems(); break;
-                    case '2': _clientServices.ShowAvailableItems(); break;
+                    case '1':
+                        _clientServices.ShowAllItems(); 
+                        break;
+                    case '2': 
+                        _clientServices.ShowAvailableItems();
+                        break;
                     case '3':
                         Console.WriteLine("Write the name of your favourite artist:\n");
                         var text = Console.ReadLine();
-                        _clientServices.ShowItemsByArtist(text); break;
+                        _clientServices.ShowItemsByArtist(text); 
+                        break;
                     case '4':
                         Console.WriteLine("Thanks for using our services!");
                         _repo.Save();
@@ -39,8 +39,7 @@ namespace Repository.Interface.Clientview
                         break;
                     default:
                         Console.Write("Invalid input try again!");
-                        continue;
-                        break;
+                        continue;                 
                 }
             }
         }

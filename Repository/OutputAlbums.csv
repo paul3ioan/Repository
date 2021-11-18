@@ -1,4 +1,5 @@
 ID,Album,Genre,Artist,Valid,Sales,Year,Record Label
-1,Astroworld,Trap,Travis Scott,True,2362210,2015,whoKnows
-2,Vulgar Display of Power,Rock,Pantera,False,2375522,1992,whoKnows
-3,Ashes of the Wake,Rock,Lamb of God,True,3463272,2004,whoKnows
+0,Astroworld,Trap,Travis Scott,True,2362210,2015,whoKnows
+1,Vulgar Display of Power,Rock,Pantera,False,2375522,1992,whoKnows
+2,Ashes of the Wake,Rock,Lamb of God,True,3463272,2004,whoKnows
+3,My Beautiful Dark Twisted Fantasy,rap,Kanye West,True,1242632,2010,whoKnows

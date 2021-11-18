@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.Interface.Clientview
 {
@@ -17,37 +13,45 @@ namespace Repository.Interface.Clientview
         public void ShowAllItems()
         {
             var allAlbums = _repo.GetAllAlbums();
-            if (allAlbums == null) { Console.WriteLine($"No albums found"); return; }
+            if (allAlbums == null) 
+            {
+                Console.WriteLine($"No albums found");
+                return; 
+            }
             foreach (var album in allAlbums)
             {
                 var avalability = album.Valid == true ? "Available" : "Sold";
                 Console.WriteLine($"\n{album.Name} {album.ArtistName} {album.Genre} {avalability}");
-            }
-            
+            }        
             ShowOptionsToBuy();
-
         }
         public void ShowAvailableItems()
         {
             var allAlbums = _repo.GetByValidity();
-            if (allAlbums == null) { Console.WriteLine($"No albums by available"); return; }
+            if (allAlbums == null) 
+            {
+                Console.WriteLine($"No albums by available"); 
+                return; 
+            }
             foreach (var album in allAlbums)
             {
                 Console.WriteLine($"\n{album.Name} {album.ArtistName} {album.Genre} {"Available"}");
-            }
-             
+            }       
             ShowOptionsToBuy();
         }
         public void ShowItemsByArtist(string name)
         {
             var allAlbums = _repo.GetByArtist(name);
-            if (allAlbums == null) { Console.WriteLine($"No albums by {name}"); return; }
+            if (allAlbums == null) 
+            { 
+                Console.WriteLine($"No albums by {name}"); 
+                return; 
+            }
             foreach (var album in allAlbums)
             {
                 var avalability = album.Valid == true ? "Available" : "Sold";
-                Console.WriteLine($"\n{album.Name} {album.ArtistName} {album.Genre} {"Available"}");
-            }
-            
+                Console.WriteLine($"\n{album.Name} {album.ArtistName} {album.Genre} {avalability}");
+            } 
             ShowOptionsToBuy();
         }
         private void ItemBought(Album album)
@@ -56,8 +60,7 @@ namespace Repository.Interface.Clientview
             _repo.Update(album);          
         }
         private void ShowOptionsToBuy()
-        {
-            
+        {           
             bool inLoop = true;
             while (inLoop)
             {

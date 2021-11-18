@@ -1,43 +1,20 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using System.Collections.Generic;
-namespace Repository
+using System.Linq;
+namespace Repository.Repository
 {
-    public class AlbumRepo : IAlbumRepo
+    public abstract class Rrepository : IRrepository
     {
-        private int id = 0;
-        private string outputPath = "../../../OutputAlbums.csv";
-        private IEnumerable<Album> albums = new List<Album>();
-   
-        public AlbumRepo(string path)
-        {
-            
-            List<Album> supportNewAlbums = new();
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = File.OpenText(path))
-                {
-                    string s;
-                    s = sr.ReadLine();
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        var newAlbum = AddFromDataBaseElement(s);
-                        supportNewAlbums.Add(newAlbum);
-                    }
-                }
-                id = supportNewAlbums.Count() + 1;
-                albums=supportNewAlbums.AsEnumerable<Album>();
-            }
-        }
+
+        protected int id = 1;
+        private List<int> missingIds = new();
+
+        protected IEnumerable<Album> albums = new List<Album>();
         public IEnumerable<Album> GetAllAlbums()
         {
             return albums;
         }
-        public int GetGenericId()
-        {
-            return id;
-        }
+
         public Album GetById(int AlbumId)
         {
             if (!albums.Where(x => x.Id == AlbumId).Any())
@@ -56,13 +33,12 @@ namespace Repository
         {
             if (!albums.Where(x => x.ArtistName == artistName).Any())
                 return null;
-
             List<Album> albumsByArtist = albums.Where(x => x.ArtistName == artistName).ToList();
-            return albumsByArtist.AsEnumerable<Album>();
+            return albumsByArtist;
         }
         public IEnumerable<Album> GetByValidity()
         {
-            IEnumerable<Album> albumsByValidity = albums.Where(x => x.Valid == true).AsEnumerable<Album>();
+            IEnumerable<Album> albumsByValidity = albums.Where(x => x.Valid == true).ToList();
             return albumsByValidity;
         }
         public void Update(Album changedAlbum)
@@ -83,33 +59,34 @@ namespace Repository
         }
         public IEnumerable<Album> GetByYear(int year)
         {
-            IEnumerable<Album> albumsByYear = albums.Where(x => x.Year == year);
+            IEnumerable<Album> albumsByYear = albums.Where(x => x.Year == year).ToList();
             if (albumsByYear == null)
                 throw new ArgumentNullException($"No album from the year {year}");
             return albumsByYear;
         }
         public void Insert(Album album)
         {
-            List<Album> supportList = albums.ToList();
+            var supportList = albums.ToList();
+            if (missingIds.Count == 0)
+            {
+                album.Id = id++;
+            }
+            else
+            {
+                album.Id = missingIds[0];
+                missingIds.Remove(missingIds[0]);
+            }
             supportList.Add(album);
-            albums = supportList.AsEnumerable<Album>();
+            albums = supportList;
         }
         public void Delete(int AlbumId)
         {
-            var newAlbums = albums.Where(x => x.Id != AlbumId);
+            
+            missingIds.Add(AlbumId);
+            var newAlbums = albums.Where(x => x.Id != AlbumId).ToList();
             albums = newAlbums;
         }
-        public void Save()
-        {
-            using (StreamWriter sw = File.CreateText(outputPath))
-            {
-                sw.WriteLine("ID,Album,Genre,Artist,Valid,Sales,Year,Record Label");
-                foreach (var album in albums)
-                    sw.WriteLine($"{album.Id},{album.Name},{album.Genre},{album.ArtistName},{album.Valid}," +
-                        $"{album.Sales},{album.Year},{album.RecordLabel}");
-            }
-        }
-        public static Album AddFromDataBaseElement(string s)
+        public Album AddFromDataBaseElement(string s)
         {
             Album newAlbum = new();
             var list = s.Split(',');
@@ -119,13 +96,18 @@ namespace Repository
             newAlbum.ArtistName = list[3];
             newAlbum.Genre = list[2];
             if (list[4] == "true")
+            {
                 newAlbum.Valid = true;
+            }
             else
+            {
                 newAlbum.Valid = false;
+            }
             newAlbum.Sales = Int32.Parse(list[5]);
             newAlbum.Year = Convert.ToInt32(list[6]);
             newAlbum.RecordLabel = list[7];
             return newAlbum;
         }
+        public abstract void Save();
     }
 }
