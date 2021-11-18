@@ -56,6 +56,12 @@ namespace Repository.Interface.Clientview
         }
         private void ItemBought(Album album)
         {
+            if(album.Valid == false)
+            {
+                Console.WriteLine($"The album {album.Name} is not available!");
+                return;
+            }
+            Console.WriteLine("Thank you for the purchase!");
             album.Valid = false;
             _repo.Update(album);          
         }
@@ -78,8 +84,7 @@ namespace Repository.Interface.Clientview
                             continue;
                         }
                         else
-                        {
-                            Console.WriteLine("Thank you for the purchase!");
+                        {     
                             ItemBought(album);
                             inLoop = false;
                         }
