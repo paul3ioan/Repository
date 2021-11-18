@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<row>
+		<Id>1</Id>
+		<Album>Astroworld</Album>
+		<Artist>Trap</Artist>
+		<Genre>Travis Scott</Genre>
+		<Valid>true</Valid>
+		<Sales>2362210</Sales>
+		<Year>2015</Year>
+		<RecordLabel>whoKnows</RecordLabel>
+	</row>
+	<row>
+		<Id>2</Id>
+		<Album>Vulgar Display of Power</Album>
+		<Artist>Rock</Artist>
+		<Genre>Pantera</Genre>
+		<Valid>false</Valid>
+		<Sales>2375522</Sales>
+		<Year>1992</Year>
+		<RecordLabel>whoKnows</RecordLabel>
+	</row>
+	<row>
+		<Id>3</Id>
+		<Album>Ashes of the Wake</Album>
+		<Artist>Rock</Artist>
+		<Genre>Lamb of God</Genre>
+		<Valid>true</Valid>
+		<Sales>3463272</Sales>
+		<Year>2004</Year>
+		<RecordLabel>whoKnows</RecordLabel>
+	</row>
+	<row>
+		<Id>4</Id>
+		<Album>My Beautiful Dark Twisted Fantasy</Album>
+		<Artist>rap</Artist>
+		<Genre>Kanye West</Genre>
+		<Valid>true</Valid>
+		<Sales>1242632</Sales>
+		<Year>2010</Year>
+		<RecordLabel>whoKnows</RecordLabel>
+	</row>
+</root>
